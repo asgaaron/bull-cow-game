@@ -1,0 +1,10 @@
+{
+	"files.exclude": {
+		"C:/Users/asgaa/code/unrealcpp/bull-cow-game/.git": true,
+		"C:/Users/asgaa/code/unrealcpp/bull-cow-game/.vs": true,
+		"C:/Users/asgaa/code/unrealcpp/bull-cow-game/.vscode": true,
+		"C:/Users/asgaa/code/unrealcpp/bull-cow-game/Content": true,
+		"C:/Users/asgaa/code/unrealcpp/bull-cow-game/Intermediate": true,
+		"C:/Users/asgaa/code/unrealcpp/bull-cow-game/Saved": true
+	}
+}
