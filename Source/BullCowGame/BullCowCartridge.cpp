@@ -4,26 +4,58 @@
 void UBullCowCartridge::BeginPlay() // When the game starts
 {
     Super::BeginPlay();
-    PrintLine(TEXT("Welcome to bulls and cows!"));
-    PrintLine(TEXT("Type something and press enter..."));
+    SetupGame();
 }
 
-void UBullCowCartridge::OnInput(const FString& Input) // When the player hits enter
+void UBullCowCartridge::OnInput(const FString &Input) // When the player hits enter
 {
     ClearScreen();
-    FString HiddenWord = TEXT("hockey");
-    PrintLine(Input);
+    if (!bGameOver)
+    {
+        if (Input.Equals(HiddenWord))
+        {
+            PrintLine(TEXT("NICE! You win!"));
+            EndGame();
+        }
+        else
+        {
+            if (HiddenWord.Len() != Input.Len())
+            {
+                PrintLine(FString::Printf(TEXT("The hidden word has %d characters..."), HiddenWord.Len()));
+            }
+            else
+            {
+                PrintLine(TEXT("That guess wasn't right, guess again..."));
+                Lives--;
+                if (Lives == 0)
+                {
+                    EndGame();
+                }
+                else
+                {
+                    PrintLine(FString::Printf(TEXT("Lives left: %d"), Lives));
+                }
+            }
+        }
+    }
+    else
+    {
+        SetupGame();
+    }
 }
 
-/*
+void UBullCowCartridge::SetupGame()
+{
+    HiddenWord = "kale";
+    Lives = 3;
+    bGameOver = false;
+    PrintLine(FString::Printf(TEXT("Welcome to bulls and cows!\nGuess the %i letter word.\nType your guess and press enter..."), HiddenWord.Len()));
+}
 
-start game
-set hidden word
-prompt for guess
-is guess correct?
-if yes
-    yay!
-else
-    boo.
-
-*/
+void UBullCowCartridge::EndGame()
+{
+    bGameOver = true;
+    PrintLine(TEXT(""));
+    PrintLine(FString::Printf(TEXT("GAME OVER\nThe hidden word was: %s\nPress enter to continue..."), *HiddenWord));
+    PrintLine(TEXT(""));
+}
