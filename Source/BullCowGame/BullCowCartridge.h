@@ -16,6 +16,7 @@ public:
 	virtual void OnInput(const FString &Input) override;
 	virtual void SetupGame();
 	virtual void EndGame();
+	virtual void ProcessGuess(FString Guess);
 
 	// Your declarations go below!
 private:
