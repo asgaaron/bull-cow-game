@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Math/RandomStream.h"
 #include "CoreMinimal.h"
 #include "Console/Cartridge.h"
 #include "BullCowCartridge.generated.h"
@@ -14,11 +15,12 @@ class BULLCOWGAME_API UBullCowCartridge : public UCartridge
 public:
 	virtual void BeginPlay() override;
 	virtual void OnInput(const FString &Input) override;
-	virtual void SetupGame();
-	virtual void EndGame();
-	virtual void ProcessGuess(FString Guess);
+	void SetupGame();
+	void EndGame();
+	void ProcessGuess(FString Guess);
+	bool IsIsogram(FString Input) const;
+	void GiveHint() const;
 
-	// Your declarations go below!
 private:
 	FString HiddenWord;
 	int32 Lives;
